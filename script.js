@@ -1,67 +1,68 @@
-// Initialize Supabase client (UMD version)
+// --- Supabase setup ---
 const supabase = window.supabase.createClient(
   "https://crwwkyoonmmcdurrbpfh.supabase.co",
   "sb_publishable_Czuc7wvfOKC92eTPRKbo1A_Qa8B1x70"
-)
+);
 
-// ---------------- Auth ----------------
-async function signUp() {
-  const email = document.getElementById('email').value
-  const password = document.getElementById('password').value
+// --- Auth functions ---
+function signUp() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  supabase.auth.signUp({ email, password })
+    .then(res => {
+      if (res.error) {
+        document.getElementById('auth-message').innerText = res.error.message;
+      } else {
+        document.getElementById('auth-message').innerText = "Sign up successful!";
+      }
+    });
+}
 
-  const { data, error } = await supabase.auth.signUp({ email, password })
-  if (error) {
-    alert(error.message)
+function signIn() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  supabase.auth.signInWithPassword({ email, password })
+    .then(res => {
+      if (res.error) {
+        document.getElementById('auth-message').innerText = res.error.message;
+      } else {
+        document.getElementById('auth-message').innerText = "Logged in!";
+        document.getElementById('auth').style.display = "none";
+        document.getElementById('game').style.display = "block";
+        loadRandomMuscle();
+      }
+    });
+}
+
+function signOut() {
+  supabase.auth.signOut().then(() => {
+    document.getElementById('auth').style.display = "block";
+    document.getElementById('game').style.display = "none";
+    document.getElementById('auth-message').innerText = "Logged out!";
+  });
+}
+
+// --- Quiz logic ---
+let muscles = window.muscles || []; // from muscles.json
+let currentMuscle = null;
+
+function loadRandomMuscle() {
+  const index = Math.floor(Math.random() * muscles.length);
+  currentMuscle = muscles[index];
+  const imgIndex = Math.floor(Math.random() * currentMuscle.images.length);
+  document.getElementById('muscle-image').src = currentMuscle.images[imgIndex];
+  document.getElementById('muscle-name').value = "";
+  document.getElementById('result').innerText = "";
+}
+
+function checkAnswer() {
+  const userInput = document.getElementById('muscle-name').value.trim().toLowerCase();
+  if (!currentMuscle) return;
+  const correct = currentMuscle.name.toLowerCase();
+  if (userInput === correct) {
+    document.getElementById('result').innerText = "✅ Correct!";
+    loadRandomMuscle();
   } else {
-    alert("Sign up successful! Please check your email if confirmation is required.")
-    console.log(data)
+    document.getElementById('result').innerText = "❌ Try again!";
   }
 }
-
-async function signIn() {
-  const email = document.getElementById('email').value
-  const password = document.getElementById('password').value
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-  if (error) {
-    alert(error.message)
-  } else {
-    alert("Login successful!")
-    console.log(data)
-    getLeaderboard()
-  }
-}
-
-async function signOut() {
-  const { error } = await supabase.auth.signOut()
-  if (error) alert(error.message)
-  else alert("Logged out")
-}
-
-// ---------------- Test Score ----------------
-async function testScore() {
-  const { data: { user }, error: userError } = await supabase.auth.getUser()
-  if (!user) { 
-    alert("Please login first!")
-    return 
-  }
-
-  // Example test score
-  const score = Math.floor(Math.random() * 20)
-  const percent = Math.floor(Math.random() * 100)
-
-  const { data, error } = await supabase.from("scores").insert({
-    user_id: user.id,
-    score: score,
-    percent: percent
-  })
-  if (error) alert(error.message)
-  else {
-    alert(`Score saved! Score: ${score}, Percent: ${percent}%`)
-    getLeaderboard()
-  }
-}
-
-// ---------------- Leaderboard ----------------
-async function getLeaderboard() {
-  const { data, err

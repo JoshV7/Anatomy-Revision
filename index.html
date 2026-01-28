@@ -5,32 +5,28 @@
   <title>Muscle Quiz</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Supabase UMD Bundle for browser -->
+  <!-- Supabase UMD -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
-
   <h1 class="title">Muscle Quiz</h1>
 
   <!-- Auth -->
   <div id="auth">
     <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
+    <input id="password" type="password" placeholder="Password" type="password">
     <button onclick="signUp()">Sign Up</button>
     <button onclick="signIn()">Login</button>
     <button onclick="signOut()">Logout</button>
+    <p id="auth-message"></p>
   </div>
 
   <!-- Game -->
-  <div id="game">
-    <button onclick="testScore()">Test Save Score</button>
-  </div>
-
-  <div id="leaderboard">
-    <h2>Leaderboard</h2>
-    <table id="leaderboardTable">
-      <tr><th>User</th><th>Score</th><th>% Correct</th></tr>
-    </table>
+  <div id="game" style="display:none;">
+    <img id="muscle-image" src="" alt="Muscle Image" class="muscle-image">
+    <input id="muscle-name" placeholder="Type muscle name">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <p id="result"></p>
   </div>
 
   <script src="muscles.json"></script>
