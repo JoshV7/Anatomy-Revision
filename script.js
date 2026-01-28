@@ -47,26 +47,6 @@ function signOut() {
     });
 }
 
-// --- Quiz logic ---
-let muscles = [
-  {
-    "name": "Biceps Brachii",
-    "images": [
-      "https://via.placeholder.com/300x200?text=Biceps+1",
-      "https://via.placeholder.com/300x200?text=Biceps+2",
-      "https://via.placeholder.com/300x200?text=Biceps+3"
-    ]
-  },
-  {
-    "name": "Triceps Brachii",
-    "images": [
-      "https://via.placeholder.com/300x200?text=Triceps+1",
-      "https://via.placeholder.com/300x200?text=Triceps+2",
-      "https://via.placeholder.com/300x200?text=Triceps+3"
-    ]
-  }
-];
-
 let currentMuscle = null;
 
 function loadRandomMuscle() {
