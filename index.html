@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Muscle Quiz</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <h1 class="title">Muscle Quiz</h1>
+
+  <!-- Auth -->
+  <div id="auth">
+    <input id="email" placeholder="email">
+    <input id="password" type="password" placeholder="password">
+    <button onclick="signUp()">Sign up</button>
+    <button onclick="signIn()">Login</button>
+    <button onclick="signOut()">Logout</button>
+  </div>
+
+  <!-- Game -->
+  <div id="game">
+    <button onclick="testScore()">Test Save Score</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
