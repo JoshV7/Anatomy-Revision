@@ -9,11 +9,11 @@ function signUp() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   supabase.auth.signUp({ email, password })
-    .then(res => {
-      if (res.error) {
-        document.getElementById('auth-message').innerText = res.error.message;
+    .then(({ data, error }) => {
+      if (error) {
+        document.getElementById('auth-message').innerText = "Error: " + error.message;
       } else {
-        document.getElementById('auth-message').innerText = "Sign up successful!";
+        document.getElementById('auth-message').innerText = "Sign up successful! Please check your email to confirm.";
       }
     });
 }
@@ -22,9 +22,9 @@ function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   supabase.auth.signInWithPassword({ email, password })
-    .then(res => {
-      if (res.error) {
-        document.getElementById('auth-message').innerText = res.error.message;
+    .then(({ data, error }) => {
+      if (error) {
+        document.getElementById('auth-message').innerText = "Error: " + error.message;
       } else {
         document.getElementById('auth-message').innerText = "Logged in!";
         document.getElementById('auth').style.display = "none";
@@ -35,15 +35,38 @@ function signIn() {
 }
 
 function signOut() {
-  supabase.auth.signOut().then(() => {
-    document.getElementById('auth').style.display = "block";
-    document.getElementById('game').style.display = "none";
-    document.getElementById('auth-message').innerText = "Logged out!";
-  });
+  supabase.auth.signOut()
+    .then(({ error }) => {
+      if (error) {
+        document.getElementById('auth-message').innerText = "Error signing out: " + error.message;
+      } else {
+        document.getElementById('auth').style.display = "block";
+        document.getElementById('game').style.display = "none";
+        document.getElementById('auth-message').innerText = "Logged out!";
+      }
+    });
 }
 
 // --- Quiz logic ---
-let muscles = window.muscles || []; // from muscles.json
+let muscles = [
+  {
+    "name": "Biceps Brachii",
+    "images": [
+      "https://via.placeholder.com/300x200?text=Biceps+1",
+      "https://via.placeholder.com/300x200?text=Biceps+2",
+      "https://via.placeholder.com/300x200?text=Biceps+3"
+    ]
+  },
+  {
+    "name": "Triceps Brachii",
+    "images": [
+      "https://via.placeholder.com/300x200?text=Triceps+1",
+      "https://via.placeholder.com/300x200?text=Triceps+2",
+      "https://via.placeholder.com/300x200?text=Triceps+3"
+    ]
+  }
+];
+
 let currentMuscle = null;
 
 function loadRandomMuscle() {
@@ -65,4 +88,9 @@ function checkAnswer() {
   } else {
     document.getElementById('result').innerText = "❌ Try again!";
   }
+}
+
+// Optional test score button
+function testScore() {
+  alert("This will save the score later!");
 }
