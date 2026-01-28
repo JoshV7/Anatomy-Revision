@@ -1,53 +1,67 @@
+// Initialize Supabase client (UMD version)
 const supabase = window.supabase.createClient(
   "https://crwwkyoonmmcdurrbpfh.supabase.co",
   "sb_publishable_Czuc7wvfOKC92eTPRKbo1A_Qa8B1x70"
 )
 
+// ---------------- Auth ----------------
 async function signUp() {
-  const email = emailInput()
-  const password = passInput()
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
 
-  const { error } = await supabase.auth.signUp({ email, password })
-
-  if (error) alert(error.message)
-  else alert("Account created")
+  const { data, error } = await supabase.auth.signUp({ email, password })
+  if (error) {
+    alert(error.message)
+  } else {
+    alert("Sign up successful! Please check your email if confirmation is required.")
+    console.log(data)
+  }
 }
 
 async function signIn() {
-  const email = emailInput()
-  const password = passInput()
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-  if (error) alert(error.message)
-  else alert("Logged in")
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+  if (error) {
+    alert(error.message)
+  } else {
+    alert("Login successful!")
+    console.log(data)
+    getLeaderboard()
+  }
 }
 
 async function signOut() {
-  await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut()
+  if (error) alert(error.message)
+  else alert("Logged out")
 }
 
-function emailInput() {
-  return document.getElementById("email").value
-}
-
-function passInput() {
-  return document.getElementById("password").value
-}
-
+// ---------------- Test Score ----------------
 async function testScore() {
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) {
-    alert("Login first")
-    return
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (!user) { 
+    alert("Please login first!")
+    return 
   }
 
-  await supabase.from("scores").insert({
-    user_id: user.id,
-    score: Math.floor(Math.random()*20),
-    percent: 80
-  })
+  // Example test score
+  const score = Math.floor(Math.random() * 20)
+  const percent = Math.floor(Math.random() * 100)
 
-  alert("Score saved")
+  const { data, error } = await supabase.from("scores").insert({
+    user_id: user.id,
+    score: score,
+    percent: percent
+  })
+  if (error) alert(error.message)
+  else {
+    alert(`Score saved! Score: ${score}, Percent: ${percent}%`)
+    getLeaderboard()
+  }
 }
+
+// ---------------- Leaderboard ----------------
+async function getLeaderboard() {
+  const { data, err

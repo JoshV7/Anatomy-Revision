@@ -1,10 +1,21 @@
-[
+// example of muscles.json data converted to JS array
+const muscles = [
   {
-    "name": "Biceps brachii",
-    "C": "anterior arm",
-    "O": "supraglenoid tubercle; coracoid process",
-    "I": "radial tuberosity",
-    "N": "musculocutaneous (C5–C7)",
-    "A": "flex elbow and supinate forearm"
+    name: "Biceps Brachii",
+    images: ["biceps1.png","biceps2.png","biceps3.png"],
+    C: "anterior arm",
+    O: "long → supraglenoid tubercle; short → coracoid process",
+    I: "radial tuberosity",
+    N: "musculocutaneous (C5–C7)",
+    A: "flexion of elbow, supination of forearm, weak shoulder flexion"
+  },
+  {
+    name: "Flexor Digitorum Superficialis",
+    images: ["fds1.png","fds2.png","fds3.png"],
+    C: "anterior forearm (intermediate)",
+    O: "humero-ulnar head → medial epicondyle + coronoid; radial head → anterior radius",
+    I: "middle phalanges 2–5",
+    N: "median nerve",
+    A: "flex PIP joints 2–5"
   }
 ]

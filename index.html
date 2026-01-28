@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Muscle Quiz</title>
-
   <link rel="stylesheet" href="style.css">
 
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase UMD Bundle for browser -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
-
 <body>
 
   <h1 class="title">Muscle Quiz</h1>
 
   <!-- Auth -->
   <div id="auth">
-    <input id="email" placeholder="email">
-    <input id="password" type="password" placeholder="password">
-    <button onclick="signUp()">Sign up</button>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
     <button onclick="signIn()">Login</button>
     <button onclick="signOut()">Logout</button>
   </div>
@@ -28,6 +26,14 @@
     <button onclick="testScore()">Test Save Score</button>
   </div>
 
+  <div id="leaderboard">
+    <h2>Leaderboard</h2>
+    <table id="leaderboardTable">
+      <tr><th>User</th><th>Score</th><th>% Correct</th></tr>
+    </table>
+  </div>
+
+  <script src="muscles.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

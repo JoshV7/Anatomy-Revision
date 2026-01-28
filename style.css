@@ -1,34 +1,51 @@
 body {
-  background: #0f172a;
-  color: white;
+  background-color: #111;
+  color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
-  padding: 40px;
 }
 
-.title {
-  font-size: 3rem;
-  margin-bottom: 40px;
+h1.title {
+  color: #00bfff;
+  margin-top: 20px;
+}
+
+input, button {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 input {
-  padding: 8px;
-  margin: 5px;
-  border-radius: 6px;
-  border: none;
+  width: 200px;
 }
 
 button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  margin: 5px;
-  border-radius: 8px;
+  background-color: #00bfff;
+  color: #fff;
   cursor: pointer;
   transition: 0.2s;
 }
 
 button:hover {
-  transform: scale(1.05);
+  background-color: #009acd;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 300px;
+}
+
+td, th {
+  border: 1px solid #555;
+  padding: 8px;
+  text-align: center;
+}
+
+#muscle-image img {
+  border: 2px solid #00bfff;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
