@@ -1,18 +1,152 @@
 [
   {
     "name": "Biceps Brachii",
+    "COINA": {
+      "C": "anterior arm",
+      "O": "long head → supraglenoid tubercle; short head → coracoid process",
+      "I": "radial tuberosity",
+      "N": "musculocutaneous nerve (C5–C7)",
+      "A": "flexion of elbow, supination of forearm, weak shoulder flexion"
+    },
     "images": [
-      "https://via.placeholder.com/300x200?text=Biceps+1",
-      "https://via.placeholder.com/300x200?text=Biceps+2",
-      "https://via.placeholder.com/300x200?text=Biceps+3"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Biceps_brachii.png/300px-Biceps_brachii.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/1121_Muscles_that_Move_the_Forearm.jpg/400px-1121_Muscles_that_Move_the_Forearm.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Gray413.png/300px-Gray413.png"
     ]
   },
   {
     "name": "Triceps Brachii",
+    "COINA": {
+      "C": "posterior arm",
+      "O": "long head → infraglenoid tubercle; lateral head → posterior humerus; medial head → posterior humerus",
+      "I": "olecranon process of ulna",
+      "N": "radial nerve (C6–C8)",
+      "A": "extension of elbow, long head extends and adducts shoulder"
+    },
     "images": [
-      "https://via.placeholder.com/300x200?text=Triceps+1",
-      "https://via.placeholder.com/300x200?text=Triceps+2",
-      "https://via.placeholder.com/300x200?text=Triceps+3"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Triceps_brachii.png/300px-Triceps_brachii.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/1124_Muscles_that_Move_the_Forearm_Tric_Brach.jpg/400px-1124_Muscles_that_Move_the_Forearm_Tric_Brach.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Gray421.png/300px-Gray421.png"
+    ]
+  },
+  {
+    "name": "Deltoid",
+    "COINA": {
+      "C": "shoulder",
+      "O": "anterior → lateral clavicle; middle → acromion; posterior → spine of scapula",
+      "I": "deltoid tuberosity of humerus",
+      "N": "axillary nerve (C5–C6)",
+      "A": "anterior → flexion and medial rotation; middle → abduction; posterior → extension and lateral rotation"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Deltoid_muscle_top9.png/300px-Deltoid_muscle_top9.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/1119_Muscles_that_Position_the_Pectoral_Girdle.jpg/500px-1119_Muscles_that_Position_the_Pectoral_Girdle.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Gray411.png/300px-Gray411.png"
+    ]
+  },
+  {
+    "name": "Pectoralis Major",
+    "COINA": {
+      "C": "anterior chest",
+      "O": "clavicular head → medial clavicle; sternocostal head → sternum and costal cartilages 1-6",
+      "I": "lateral lip of intertubercular groove of humerus",
+      "N": "medial and lateral pectoral nerves (C5–T1)",
+      "A": "adduction, medial rotation, and flexion of shoulder"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Pectoralis_major.png/300px-Pectoralis_major.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/1117_Muscles_that_Move_the_Humerus_b.jpg/500px-1117_Muscles_that_Move_the_Humerus_b.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Gray410.png/300px-Gray410.png"
+    ]
+  },
+  {
+    "name": "Latissimus Dorsi",
+    "COINA": {
+      "C": "posterior trunk",
+      "O": "spinous processes T7-L5, sacrum, iliac crest, ribs 9-12",
+      "I": "floor of intertubercular groove of humerus",
+      "N": "thoracodorsal nerve (C6–C8)",
+      "A": "extension, adduction, and medial rotation of shoulder"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Latissimus_dorsi.png/300px-Latissimus_dorsi.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/1118_Muscles_that_Move_the_Humerus_a.jpg/500px-1118_Muscles_that_Move_the_Humerus_a.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Gray409.png/300px-Gray409.png"
+    ]
+  },
+  {
+    "name": "Rectus Abdominis",
+    "COINA": {
+      "C": "anterior abdominal wall",
+      "O": "pubic crest and pubic symphysis",
+      "I": "costal cartilages of ribs 5-7 and xiphoid process",
+      "N": "thoracoabdominal nerves (T7–T12)",
+      "A": "flexion of trunk, compression of abdominal contents"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Rectus_abdominis.png/300px-Rectus_abdominis.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gray399.png/300px-Gray399.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/1109_Muscles_of_the_Abdomen.jpg/500px-1109_Muscles_of_the_Abdomen.jpg"
+    ]
+  },
+  {
+    "name": "Quadriceps Femoris",
+    "COINA": {
+      "C": "anterior thigh",
+      "O": "rectus femoris → AIIS; vastus lateralis → lateral femur; vastus medialis → medial femur; vastus intermedius → anterior femur",
+      "I": "tibial tuberosity via patellar ligament",
+      "N": "femoral nerve (L2–L4)",
+      "A": "extension of knee, rectus femoris also flexes hip"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Quadriceps_3D.gif/300px-Quadriceps_3D.gif",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/1123_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes_b.jpg/400px-1123_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes_b.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Gray432.png/300px-Gray432.png"
+    ]
+  },
+  {
+    "name": "Hamstrings",
+    "COINA": {
+      "C": "posterior thigh",
+      "O": "biceps femoris long head → ischial tuberosity; semitendinosus → ischial tuberosity; semimembranosus → ischial tuberosity",
+      "I": "biceps femoris → head of fibula; semitendinosus → medial tibia; semimembranosus → medial tibial condyle",
+      "N": "tibial nerve (L5–S2), biceps femoris short head → common fibular nerve",
+      "A": "flexion of knee, extension of hip"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Hamstring_muscles.gif/300px-Hamstring_muscles.gif",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/1127_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes.jpg/400px-1127_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Gray433.png/300px-Gray433.png"
+    ]
+  },
+  {
+    "name": "Gastrocnemius",
+    "COINA": {
+      "C": "posterior leg (superficial)",
+      "O": "medial head → medial femoral condyle; lateral head → lateral femoral condyle",
+      "I": "calcaneus via Achilles tendon",
+      "N": "tibial nerve (S1–S2)",
+      "A": "plantar flexion of ankle, flexion of knee"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Gastrocnemius.png/300px-Gastrocnemius.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/1123_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes_b.jpg/400px-1123_Muscles_of_the_Leg_that_Move_the_Foot_and_Toes_b.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Gray482.png/300px-Gray482.png"
+    ]
+  },
+  {
+    "name": "Trapezius",
+    "COINA": {
+      "C": "upper back and neck",
+      "O": "external occipital protuberance, nuchal ligament, spinous processes C7-T12",
+      "I": "lateral clavicle, acromion, spine of scapula",
+      "N": "spinal accessory nerve (CN XI) and C3-C4",
+      "A": "upper fibers → elevation of scapula; middle fibers → retraction; lower fibers → depression"
+    },
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Trapezius_Gray409.PNG/300px-Trapezius_Gray409.PNG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/1119_Muscles_that_Position_the_Pectoral_Girdle.jpg/500px-1119_Muscles_that_Position_the_Pectoral_Girdle.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Gray409.png/300px-Gray409.png"
     ]
   }
 ]

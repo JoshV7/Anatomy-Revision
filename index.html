@@ -1,35 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Muscle Quiz</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Supabase UMD -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muscle Mastery Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1 class="title">Muscle Quiz</h1>
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="screen active">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1 class="logo">Muscle<span class="accent">Mastery</span></h1>
+                <p class="tagline">Master anatomical knowledge through precision testing</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="signin">Sign In</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
 
-  <!-- Auth -->
-  <div id="auth">
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password" type="password">
-    <button onclick="signUp()">Sign Up</button>
-    <button onclick="signIn()">Login</button>
-    <button onclick="signOut()">Logout</button>
-    <p id="auth-message"></p>
-  </div>
+            <!-- Sign In Form -->
+            <form id="signin-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="signin-email">Email Address</label>
+                    <input type="email" id="signin-email" required placeholder="your.email@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+                <p class="auth-error" id="signin-error"></p>
+            </form>
 
-  <!-- Game -->
-  <div id="game" style="display:none;">
-    <img id="muscle-image" src="" alt="Muscle Image" class="muscle-image">
-    <input id="muscle-name" placeholder="Type muscle name">
-    <button onclick="checkAnswer()">Submit Answer</button>
-    <p id="result"></p>
-  </div>
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" required placeholder="your.email@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required placeholder="••••••••" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password-confirm">Confirm Password</label>
+                    <input type="password" id="signup-password-confirm" required placeholder="••••••••" minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">Create Account</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+                <p class="auth-error" id="signup-error"></p>
+            </form>
+        </div>
+    </div>
 
-  <script src="muscles.json"></script>
-  <script src="script.js"></script>
+    <!-- Difficulty Selection Screen -->
+    <div id="difficulty-screen" class="screen">
+        <div class="difficulty-container">
+            <div class="screen-header">
+                <h2>Select Difficulty</h2>
+                <p class="subtitle">Choose how many COINA values to hide per muscle</p>
+            </div>
+            
+            <div class="difficulty-grid">
+                <button class="difficulty-card" data-difficulty="easy" data-hidden="1">
+                    <div class="difficulty-level">Easy</div>
+                    <div class="difficulty-desc">1 hidden value</div>
+                    <div class="difficulty-icon">◆</div>
+                </button>
+                <button class="difficulty-card" data-difficulty="medium" data-hidden="2">
+                    <div class="difficulty-level">Medium</div>
+                    <div class="difficulty-desc">2 hidden values</div>
+                    <div class="difficulty-icon">◆◆</div>
+                </button>
+                <button class="difficulty-card" data-difficulty="hard" data-hidden="3">
+                    <div class="difficulty-level">Hard</div>
+                    <div class="difficulty-desc">3 hidden values</div>
+                    <div class="difficulty-icon">◆◆◆</div>
+                </button>
+                <button class="difficulty-card" data-difficulty="very-hard" data-hidden="4">
+                    <div class="difficulty-level">Very Hard</div>
+                    <div class="difficulty-desc">4 hidden values</div>
+                    <div class="difficulty-icon">◆◆◆◆</div>
+                </button>
+                <button class="difficulty-card" data-difficulty="insane" data-hidden="5">
+                    <div class="difficulty-level">Insane</div>
+                    <div class="difficulty-desc">All 5 hidden</div>
+                    <div class="difficulty-icon">◆◆◆◆◆</div>
+                </button>
+            </div>
+
+            <button id="start-quiz-btn" class="btn btn-primary" disabled>
+                <span class="btn-text">Begin Assessment</span>
+                <span class="btn-arrow">→</span>
+            </button>
+
+            <button id="signout-btn-difficulty" class="btn btn-secondary">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-container">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="quiz-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Difficulty</span>
+                        <span class="stat-value" id="current-difficulty">—</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value" id="score-display">0/0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Timer</span>
+                        <span class="stat-value" id="timer-display">00:00</span>
+                    </div>
+                </div>
+                <button id="signout-btn-quiz" class="btn btn-small">Sign Out</button>
+            </div>
+
+            <!-- Muscle Image -->
+            <div class="muscle-image-container">
+                <img id="muscle-image" src="" alt="Muscle to identify">
+            </div>
+
+            <!-- Muscle Name Input -->
+            <div class="name-input-section">
+                <label for="muscle-name-input">Identify the muscle:</label>
+                <div class="input-with-button">
+                    <input type="text" id="muscle-name-input" placeholder="Type muscle name...">
+                    <button id="check-name-btn" class="btn btn-check">Check</button>
+                </div>
+                <p class="feedback" id="name-feedback"></p>
+            </div>
+
+            <!-- COINA Table -->
+            <div id="coina-section" class="coina-section" style="display: none;">
+                <h3>COINA Details</h3>
+                <table class="coina-table">
+                    <tbody id="coina-tbody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+                <button id="submit-coina-btn" class="btn btn-primary">
+                    <span class="btn-text">Submit Answers</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+                <button id="next-muscle-btn" class="btn btn-secondary" style="display: none;">Next Muscle</button>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-section" class="results-section" style="display: none;">
+                <h2>Assessment Complete</h2>
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <span class="result-label">Final Score</span>
+                        <span class="result-value" id="final-score">—</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="result-label">Accuracy</span>
+                        <span class="result-value" id="final-accuracy">—</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="result-label">Time Elapsed</span>
+                        <span class="result-value" id="final-time">—</span>
+                    </div>
+                </div>
+                <button id="restart-quiz-btn" class="btn btn-primary">
+                    <span class="btn-text">New Assessment</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
